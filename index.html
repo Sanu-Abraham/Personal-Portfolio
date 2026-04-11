@@ -1,507 +1,160 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work In Progress — Sanu Abraham</title>
+  <title>Sanu Abraham</title>
+  <meta name="description" content="Personal portfolio of Sanu Abraham &mdash; Student, Artist, Thinker, Dev." />
 
-  <style>
-    :root {
-      --bg: #0a0a0c;
-      --panel: rgba(255, 255, 255, 0.03);
-      --panel2: rgba(255, 255, 255, 0.06);
-      --text: rgba(255, 255, 255, 0.9);
-      --muted: rgba(255, 255, 255, 0.55);
-      --muted2: rgba(255, 255, 255, 0.35);
-      --line: rgba(255, 255, 255, 0.08);
-      --accent: #b0ff7a;
-      --accent2: #7aa8ff;
-      --danger: #ff5470;
-      --shadow: 0 25px 70px rgba(0,0,0,0.6);
-    }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    body {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 26px;
-    }
-
-    /* noise overlay */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.11;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
-      z-index: 0;
-    }
-
-    /* glow blobs */
-    .glow {
-      position: fixed;
-      width: 650px;
-      height: 650px;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.15;
-      z-index: 0;
-      animation: float 12s ease-in-out infinite;
-    }
-
-    .glow.one {
-      background: var(--accent2);
-      top: -220px;
-      left: -200px;
-    }
-
-    .glow.two {
-      background: var(--accent);
-      bottom: -250px;
-      right: -240px;
-      animation-delay: 2.5s;
-      opacity: 0.12;
-    }
-
-    .glow.three {
-      background: var(--danger);
-      top: 40%;
-      left: 70%;
-      width: 450px;
-      height: 450px;
-      opacity: 0.08;
-      animation-delay: 5s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(35px, -45px) scale(1.05); }
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 900px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      border-radius: 22px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.07), transparent 55%);
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      position: relative;
-      z-index: 2;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 18px rgba(176,255,122,0.4);
-    }
-
-    .brand span {
-      font-size: 13px;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .nav {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 13px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: 0.2s ease;
-    }
-
-    .nav a:hover {
-      color: var(--text);
-      border-color: var(--line);
-      background: rgba(255,255,255,0.03);
-      transform: translateY(-1px);
-    }
-
-    .main {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding-top: 10px;
-    }
-
-    .title {
-      font-size: clamp(44px, 6vw, 80px);
-      font-weight: 650;
-      letter-spacing: -2px;
-      line-height: 0.95;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .title em {
-      font-style: normal;
-      color: rgba(255,255,255,0.55);
-      font-weight: 500;
-    }
-
-    .subtitle {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 70ch;
-    }
-
-    .subtitle b {
-      color: rgba(255,255,255,0.9);
-      font-weight: 600;
-    }
-
-    .scribble {
-      height: 1px;
-      width: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-      margin: 10px 0 14px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scribble::after {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 120px;
-      left: -120px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-      animation: scan 4.5s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes scan {
-      0% { left: -140px; }
-      100% { left: 110%; }
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .btn {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: var(--text);
-      text-decoration: none;
-      padding: 11px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      letter-spacing: 0.2px;
-      transition: 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.16);
-    }
-
-    .btn.primary {
-      border-color: rgba(176,255,122,0.35);
-      background: rgba(176,255,122,0.08);
-      color: rgba(230,255,220,0.95);
-    }
-
-    .btn.primary:hover {
-      background: rgba(176,255,122,0.12);
-    }
-
-    .btn .mini {
-      font-size: 11px;
-      opacity: 0.65;
-    }
-
-    /* fake progress bar */
-    .progress-wrap {
-      margin-top: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-      border-radius: 999px;
-      overflow: hidden;
-      height: 14px;
-      width: 100%;
-      max-width: 460px;
-      position: relative;
-    }
-
-    .progress {
-      height: 100%;
-      width: 22%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(176,255,122,0.7), rgba(122,168,255,0.7));
-      box-shadow: 0 0 18px rgba(176,255,122,0.25);
-      position: relative;
-      overflow: hidden;
-      animation: load 6s ease-in-out infinite;
-    }
-
-    .progress::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transform: translateX(-120%);
-      animation: shimmer 2.2s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-120%); }
-      100% { transform: translateX(120%); }
-    }
-
-    @keyframes load {
-      0%, 100% { width: 18%; }
-      50% { width: 41%; }
-    }
-
-    .progress-label {
-      margin-top: 10px;
-      font-size: 12px;
-      color: var(--muted2);
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-    }
-
-    .note {
-      position: absolute;
-      padding: 10px 12px;
-      border-radius: 14px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      border: 1px solid rgba(255,255,255,0.09);
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(8px);
-      max-width: 210px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
-      transform: rotate(var(--r));
-      z-index: 3;
-      opacity: 0.9;
-      transition: 0.25s ease;
-    }
-
-    .note:hover {
-      opacity: 1;
-      transform: rotate(calc(var(--r) * 0.8)) translateY(-4px);
-      border-color: rgba(255,255,255,0.15);
-    }
-
-    .note strong {
-      color: rgba(255,255,255,0.9);
-      font-weight: 600;
-    }
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 12px;
-      color: var(--muted2);
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer a {
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(255,255,255,0.25);
-      transition: 0.2s ease;
-    }
-
-    .footer a:hover {
-      color: rgba(255,255,255,0.9);
-      border-bottom-color: rgba(255,255,255,0.6);
-    }
-
-    /* glitch effect */
-    .glitch {
-      position: relative;
-      display: inline-block;
-    }
-
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      opacity: 0.7;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    .glitch::before {
-      transform: translate(2px, 0);
-      color: rgba(122,168,255,0.8);
-      clip-path: inset(0 0 60% 0);
-    }
-
-    .glitch::after {
-      transform: translate(-2px, 0);
-      color: rgba(176,255,122,0.8);
-      clip-path: inset(45% 0 0 0);
-    }
-
-    ::selection {
-      background: rgba(176,255,122,0.25);
-      color: rgba(255,255,255,0.95);
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
 </head>
+<body class="home-page">
+  <div class="noise"></div>
 
-<body>
-  <div class="glow one"></div>
-  <div class="glow two"></div>
-  <div class="glow three"></div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo">Sanu Abraham</a>
 
-  <div class="wrap">
+      <nav class="site-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects/index.html">Projects</a>
+        <a href="journal/index.html">Journal</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-    <div class="card">
-      <div class="top">
-        <a class="brand" href="index.html">
-          <div class="dot"></div>
-          <span>Sanu Abraham</span>
-        </a>
-      </div>
+      <button class="menu-toggle" aria-label="Open menu">Menu</button>
+    </div>
+  </header>
 
-      <div class="main">
-        <div class="title glitch" data-text="Work In Progress">
-          Work In Progress<br><em>not abandoned.</em>
+  <main>
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Personal Portfolio</p>
+          <h1 class="hero-title" aria-label="Sanu Abraham">
+            <span class="line line-1">
+              <span class="char c1">S</span>
+              <span class="char c2">a</span>
+              <span class="char c3">n</span>
+              <span class="char c4">u</span>
+            </span>
+
+            <span class="line line-2">
+              <span class="char c5">A</span>
+              <span class="char c6">b</span>
+              <span class="char c7">r</span>
+              <span class="char c8">a</span>
+              <span class="char c9">h</span>
+              <span class="char c10">a</span>
+              <span class="char c11">m</span>
+            </span>
+          </h1>
+
+          <div class="hero-titles">
+            <span class="glow-item">Student</span>
+            <span class="glow-item">Artist</span>
+            <span class="glow-item">Thinker</span>
+            <span class="glow-item">Dev</span>
+          </div>
+
+          <p class="hero-text">
+            Hi! I am a lifelong learner who’s excited by the small things in life. I love art – music, paintings, cinema, drama, performance – and I love Math, Science, and Technology. I love to code, design, solve problems, paint (I’m not that good at this though), and, sometimes, sit in silence and enjoy my life. This site is a personal space where I share my work, my thoughts, and the things that inspire me. It’s a mix of portfolio, journal, and archive.
+          </p>
+
+          <div class="hero-actions">
+            <a href="projects/index.html" class="btn btn-primary">View Projects</a>
+            <a href="journal/index.html" class="btn btn-secondary">Read Journal</a>
+          </div>
         </div>
 
-        <div class="scribble"></div>
+        <div class="hero-visual reveal">
+          <div class="profile-frame float-card">
+            <img src="assets/img/profile/profile.jpeg" alt="Portrait of Sanu Abraham" />
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <p class="subtitle">
-          This page is currently being built.
-          <br>
-          Some sections are missing, some ideas are half-written,
-          and some things are intentionally unfinished.
-          <br><br>
-          Come back later — or don't.
-          <b>Either way, I'm still creating.</b>
+    <section class="featured section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Featured Work</p>
+          <h2>Selected Projects</h2>
+        </div>
+        <div id="home-projects" class="card-grid two-col"></div>
+        <noscript>
+          <div class="card-grid two-col">
+            <article class="feature-card">
+              <a href="">
+                <div class="card-image">
+                  <img src="" alt="">
+                </div>
+                <div class="card-body">
+                  <p class="meta"></p>
+                  <h3></h3>
+                </div>
+              </a>
+            </article>
+          </div>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="journal-preview section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Latest Thoughts</p>
+          <h2>From the Journal</h2>
+        </div>
+        <div id="home-journal" class="card-grid three-col"></div>
+        <noscript>
+          <div class="card-grid three-col">
+            <article class="journal-card">
+              <a href="">
+                <p class="meta"></p>
+                <h3></h3>
+                <p></p>
+              </a>
+            </article>
+          </div>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="about-preview section">
+      <div class="container about-preview-box reveal">
+        <p class="eyebrow">About</p>
+        <h2>Built from curiosity.</h2>
+        <p><br>
+          A simple man with a curious mind. I strive to create work that shows thought and intention, work that feels raw and human.
         </p>
-
-        <div class="progress-wrap">
-          <div class="progress"></div>
-        </div>
-        <div class="progress-label" id="progressLabel">Loading... (mentally)</div>
-
+        <a href="about.html" class="text-link">Read more</a>
       </div>
+    </section>
+  </main>
 
-    </div>
-
-    <div class="footer">
-      <div>
-        © <span id="year"></span> Sanu Abraham
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>&copy; 2026 Sanu Abraham</p>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="projects/index.html">Projects</a>
+        <a href="journal/index.html">Journal</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
+  </footer>
 
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Random progress label messages
-    const labels = [
-      "Loading... (mentally)",
-      "Still writing the parts that matter.",
-      "Building something quiet and dangerous.",
-      "Not ready. Not dead.",
-      "Some pages need time to become honest.",
-      "Designing the chaos.",
-      "Typing thoughts faster than I can live them.",
-      "Waiting for clarity to arrive.",
-      "Constructing meaning...",
-      "Under construction — but still breathing."
-    ];
-
-    const label = document.getElementById("progressLabel");
-    label.textContent = labels[Math.floor(Math.random() * labels.length)];
-
-    // Occasional glitch pulse
-    const title = document.querySelector(".title");
-    setInterval(() => {
-      title.style.filter = "contrast(1.2) brightness(1.1)";
-      setTimeout(() => title.style.filter = "none", 120);
-    }, 4200);
-  </script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/content-utils.js"></script>
+  <script src="assets/js/home.js"></script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "project-one",
+    "title": "veld.agency",
+    "featured": true,
+    "date": "April 2026",
+    "category": "Brand / Web",
+    "role": "Design + Development",
+    "coverImage": "assets/img/projects/entry-1/veld-ss-cover.jpeg",
+    "contentFile": "entries/entry-1.html"
+  }
+]

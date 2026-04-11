@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "entry-one",
+    "title": "Introduction",
+    "featured": true,
+    "date": "April 11, 2026",
+    "category": "Reflection",
+    "excerpt": "Hey there! This is my journal where I'll be sharing my thoughts, experiences, and insights about web development, design, and everything in between.",
+    "contentFile": "entries/entry-1.html"
+  }
+]
