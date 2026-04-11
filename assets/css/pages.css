@@ -355,7 +355,7 @@
   .about-image,
   .project-cover,
   .entry-cover {
-    min-height: 340px;
+    min-height: 200px;
   }
 }
 
