@@ -242,6 +242,58 @@ p {
   color: #0b0b0f;
 }
 
+.btn-primary-rounded {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    120deg,
+    rgba(215, 185, 142, 0.18),
+    rgba(255, 255, 255, 0.05)
+  );
+
+  border: 1px solid rgba(215, 185, 142, 0.25);
+
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 240ms ease,
+    box-shadow 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease;
+}
+
+/* Hover */
+.btn-primary-rounded:hover {
+  transform: translateY(-2px);
+
+  background: linear-gradient(
+    120deg,
+    rgba(215, 185, 142, 0.28),
+    rgba(255, 255, 255, 0.08)
+  );
+
+  border-color: rgba(215, 185, 142, 0.4);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 25px rgba(215, 185, 142, 0.15);
+}
+
+/* Active (click) */
+.btn-primary-rounded:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
 .btn-primary:hover {
   background: #ffffff;
 }

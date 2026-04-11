@@ -28,6 +28,13 @@
   white-space: nowrap;
 }
 
+#project-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .hero-title .line {
   display: block;
   max-width: 100%;
