@@ -68,7 +68,7 @@ function renderJournalGrid(posts) {
     journalGrid.innerHTML = `
       <article class="content-box reveal in-view">
         <h3>No journal entries yet</h3>
-        <p>Add entries to <code>journal/data/journal.json</code> and they'll appear here.</p>
+        <p>Come back at a later time to see what I've been writing!</p>
       </article>
     `;
     return;

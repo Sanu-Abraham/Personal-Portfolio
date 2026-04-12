@@ -19,7 +19,7 @@ function renderHomeProjects(projects) {
     homeProjects.innerHTML = `
       <article class="content-box">
         <h3>No featured projects yet</h3>
-        <p>Add <code>"featured": true</code> to projects in <code>projects/data/projects.json</code>.</p>
+        <p>Check back later to see my latest work!</p>
       </article>
     `;
     return;
@@ -57,7 +57,7 @@ function renderHomeJournal(posts) {
     homeJournal.innerHTML = `
       <article class="content-box">
         <h3>No featured journal entries yet</h3>
-        <p>Add <code>"featured": true</code> to posts in <code>journal/data/journal.json</code>.</p>
+        <p>Come back at a later time to see what I've been writing!</p>
       </article>
     `;
     return;

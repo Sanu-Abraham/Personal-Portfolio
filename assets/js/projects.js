@@ -36,7 +36,7 @@ function renderProjectGrid(projects) {
     projectGrid.innerHTML = `
       <article class="content-box reveal in-view">
         <h3>No projects yet</h3>
-        <p>Add entries to <code>projects/data/projects.json</code> and corresponding HTML files.</p>
+        <p>Check back later to see my latest work!</p>
       </article>
     `;
     return;
@@ -131,6 +131,107 @@ async function renderProjectPage(project) {
   }
 }
 
+function initProjectLightbox() {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const prevBtn = document.getElementById("lightbox-prev");
+  const nextBtn = document.getElementById("lightbox-next");
+  const closeBtn = document.getElementById("lightbox-close");
+
+  if (!lightbox || !lightboxImg) return;
+
+  let images = [];
+  let currentIndex = -1;
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  function refreshImages() {
+    images = Array.from(document.querySelectorAll(".image-gallery img"));
+  }
+
+  function openLightbox(index) {
+    refreshImages();
+    if (!images.length || index < 0 || index >= images.length) return;
+
+    currentIndex = index;
+    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.alt = images[currentIndex].alt || "Expanded gallery image";
+    lightbox.classList.add("active");
+    document.body.classList.add("menu-open");
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    lightboxImg.src = "";
+    currentIndex = -1;
+    document.body.classList.remove("menu-open");
+  }
+
+  function showNext() {
+    if (!images.length) return;
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.alt = images[currentIndex].alt || "Expanded gallery image";
+  }
+
+  function showPrev() {
+    if (!images.length) return;
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.alt = images[currentIndex].alt || "Expanded gallery image";
+  }
+
+  document.addEventListener("click", (e) => {
+    const clickedImage = e.target.closest(".image-gallery img");
+
+    if (clickedImage) {
+      refreshImages();
+      const index = images.indexOf(clickedImage);
+      openLightbox(index);
+      return;
+    }
+
+    if (e.target === lightbox || e.target === closeBtn) {
+      closeLightbox();
+      return;
+    }
+
+    if (e.target === nextBtn) {
+      showNext();
+      return;
+    }
+
+    if (e.target === prevBtn) {
+      showPrev();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("active")) return;
+
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") showNext();
+    if (e.key === "ArrowLeft") showPrev();
+  });
+
+  lightbox.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+
+  lightbox.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchEndX - touchStartX;
+
+    if (Math.abs(deltaX) < 40) return;
+
+    if (deltaX < 0) {
+      showNext();
+    } else {
+      showPrev();
+    }
+  }, { passive: true });
+}
+
 async function initProjects() {
   const projects = await fetchProjects();
 
@@ -143,6 +244,8 @@ async function initProjects() {
     const currentProject = projects.find((project) => project.slug === slug);
     await renderProjectPage(currentProject);
   }
+
+  initProjectLightbox();
 }
 
 initProjects();

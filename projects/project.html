@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project &vert; Sanu Abraham</title>
+  
+  <link rel="icon" type="image/x-icon" href="/assets/img/icon/favicon.ico" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Project | Sanu Abraham">
@@ -38,39 +40,46 @@
   </header>
 
   <main>
-  <section class="page-hero section">
-    <div class="container reveal">
-      <p class="eyebrow"></p>
-      <h1 id="project-title"></h1>
-      <p id="project-meta" class="page-intro"></p>
-    </div>
-  </section>
-
-  <section id="project-cover-section" class="section project-cover-section is-hidden">
-    <div class="container narrow reveal">
-      <div id="project-cover" class="entry-cover">
-        <img id="project-cover-image" src="" alt="" />
+    <section class="page-hero section">
+      <div class="container reveal">
+        <p class="eyebrow"></p>
+        <h1 id="project-title"></h1>
+        <p id="project-meta" class="page-intro"></p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container narrow reveal">
-      <article id="project-content" class="rich-content content-box"></article>
-      <noscript>
-        <div class="content-box noscript-notice">
-          <p>Project pages load dynamically with JavaScript. You can still view the current standalone entry at <a href="entries/entry-1.html">this direct project page</a>.</p>
+    <section id="project-cover-section" class="section project-cover-section is-hidden">
+      <div class="container narrow reveal">
+        <div id="project-cover" class="entry-cover">
+          <img id="project-cover-image" src="" alt="" />
         </div>
-      </noscript>
-    </div>
-  </section>
-</main>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow reveal">
+        <article id="project-content" class="rich-content content-box"></article>
+        <noscript>
+          <div class="content-box noscript-notice">
+            <p></p>
+          </div>
+        </noscript>
+      </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-wrap">
       <p>&copy; 2026 Sanu Abraham</p>
     </div>
   </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close image">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">‹</button>
+    <img id="lightbox-img" alt="Expanded gallery image">
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">›</button>
+  </div>
 
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/animations.js"></script>

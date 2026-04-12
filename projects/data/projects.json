@@ -1,12 +1,33 @@
 [
   {
-    "slug": "project-one",
+    "slug": "veld-agency",
     "title": "veld.agency",
     "featured": true,
     "date": "April 2026",
     "category": "Brand / Web",
-    "role": "Design + Development",
-    "coverImage": "assets/img/projects/entry-1/veld-ss-cover.jpeg",
-    "contentFile": "entries/entry-1.html"
+    "role": "Design, Development, Communication",
+    "coverImage": "assets/img/projects/veld-agency/veld-1.jpeg",
+    "contentFile": "entries/veld-agency.html"
+  },
+  {
+    "slug": "innovators-camp",
+    "title": "Innovator's Camp",
+    "featured": true,
+    "date": "November 2024",
+    "category": "Event / Workshop",
+    "role": "Communication, Event Management, Teamwork",
+    "coverImage": "assets/img/projects/innovators-camp/innovators-camp-1.DNG",
+    "contentFile": "entries/innovators-camp.html"
+  },
+  {
+    "slug": "event-cover-designs",
+    "title": "School Event Cover Designs",
+    "featured": false,
+    "date": "Various Dates",
+    "category": "Graphic Design",
+    "role": "Design, Creativity",
+    "coverImage": "assets/img/projects/event-cover-designs/Excellentia '24.jpg",
+    "contentFile": "entries/event-cover-designs.html"
   }
+  
 ]
